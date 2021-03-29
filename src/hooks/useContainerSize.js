@@ -1,0 +1,41 @@
+import { useState, useEffect } from "react";
+
+function useContainerSize(ref) {
+  // Initialize state with undefined width/height so server and client renders match
+  // Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
+  const [containerSize, setContainerSize] = useState({
+    width: undefined,
+    height: undefined,
+    display: "mobile",
+  });
+
+  useEffect(() => {
+    // only execute all the code below in client side
+    if (typeof window !== "undefined") {
+      // Handler to call on window resize
+      function handleResize() {
+        if (ref && ref.current) {
+          var container = ref.current;
+          // Set window width/height to state
+          setContainerSize({
+            width: container.offsetWidth,
+            height: container.offsetHeight,
+            display: container.offsetWidth > 911 ? "desktop" : "mobile",
+          });
+        }
+      }
+
+      // Add event listener
+      window.addEventListener("resize", handleResize);
+
+      // Call handler right away so state gets updated with initial window size
+      handleResize();
+
+      // Remove event listener on cleanup
+      return () => window.removeEventListener("resize", handleResize);
+    }
+  }, []); // Empty array ensures that effect is only run on mount
+  return containerSize;
+}
+
+export default useContainerSize;
