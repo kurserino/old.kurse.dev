@@ -19,10 +19,13 @@ const configs = {
 const tooltipParams = {
   position: "bottom",
   followCursor: true,
-  trigger: "mouseenter",
+  // trigger: "mouseenter",
   delay: 0,
   animation: "fade",
   duration: 100,
+  interactive: true,
+  arrow: true,
+  hideOnClick: false,
 };
 
 export { tooltipParams };

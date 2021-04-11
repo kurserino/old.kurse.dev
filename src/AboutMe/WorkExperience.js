@@ -1,11 +1,13 @@
 import React from "react";
 import { css, jsc } from "@emotion/react";
 import { Tooltip } from "react-tippy";
+import { tooltipParams } from "../config.js";
 import Info from "./Info";
 import Area from "./Area";
 import Title from "./Title";
 import Text from "./Text";
 import DateRange from "./DateRange";
+import PartyPopper from "./PartyPopper";
 import Position from "./Position";
 import Company from "./Company";
 import colors from "../colors";
@@ -30,6 +32,19 @@ const Work = ({ children, isLast, ...props }) => {
   );
 };
 
+const PartyPopperWrapper = ({ children, ...props }) => {
+  return (
+    <div
+      css={css`
+        display: flex;
+        margin-left: 10px;
+      `}
+    >
+      {children}
+    </div>
+  );
+};
+
 const WorkExperience = ({ ...props }) => {
   return (
     <Area>
@@ -38,6 +53,15 @@ const WorkExperience = ({ ...props }) => {
         <DateRange from="2020 JAN" to="NOW" />
         <Position>Full stack developer</Position>
         <Company>Freelancer</Company>
+        <Tooltip
+          title="Let's work together!"
+          {...tooltipParams}
+        >
+          <PartyPopperWrapper>
+            <PartyPopper />
+            <PartyPopper isLast />
+          </PartyPopperWrapper>
+        </Tooltip>
       </Work>
       <Work>
         <DateRange from="2017 AUG" to="2020 JAN" />

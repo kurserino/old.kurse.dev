@@ -7,8 +7,9 @@ import {
 } from "react-router-dom";
 
 import Page from "./Page";
-import AboutMe from "./AboutMe";
 import Projects from "./Projects";
+import AboutMe from "./AboutMe";
+import Contact from "./Contact";
 
 export default function App({ ...props }) {
   return (
@@ -19,6 +20,9 @@ export default function App({ ...props }) {
         </Route>
         <Route path="/about-me">
           <AboutMe />
+        </Route>
+        <Route path="/contact">
+          <Contact />
         </Route>
         <Route path="*">
           <NoMatch />
