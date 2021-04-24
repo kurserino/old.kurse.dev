@@ -1,7 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { css, jsx } from "@emotion/react";
+import Confetti from "react-dom-confetti";
+
+const config = {
+  angle: 90,
+  spread: "360",
+  startVelocity: "23",
+  elementCount: 70,
+  dragFriction: 0.12,
+  duration: 3000,
+  stagger: 3,
+  width: "10px",
+  height: "10px",
+  perspective: "500px",
+  colors: ["#a864fd", "#29cdff", "#78ff44", "#ff718d", "#fdff6a"],
+};
 
 const PartyPopper = ({ isLast, ...props }) => {
+  const [showConfetti, setConfetti] = useState(false);
   return (
     <div
       css={css`
@@ -10,7 +26,12 @@ const PartyPopper = ({ isLast, ...props }) => {
           margin-right: 6px;
         `}
       `}
+      onClick={e => {
+        setConfetti(true);
+        setTimeout(() => setConfetti(false), 3000);
+      }}
     >
+      <Confetti active={showConfetti} config={config} />
       <svg
         width="28"
         height="27"

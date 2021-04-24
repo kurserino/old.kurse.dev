@@ -10,6 +10,7 @@ import Page from "./Page";
 import Projects from "./Projects";
 import AboutMe from "./AboutMe";
 import Contact from "./Contact";
+import Illustrations from "./Illustrations";
 
 export default function App({ ...props }) {
   return (
@@ -23,6 +24,9 @@ export default function App({ ...props }) {
         </Route>
         <Route path="/contact">
           <Contact />
+        </Route>
+        <Route path="/illustrations">
+          <Illustrations />
         </Route>
         <Route path="*">
           <NoMatch />

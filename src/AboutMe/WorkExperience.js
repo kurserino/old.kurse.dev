@@ -1,5 +1,6 @@
 import React from "react";
 import { css, jsc } from "@emotion/react";
+import { useSelector } from "react-redux";
 import { Tooltip } from "react-tippy";
 import { tooltipParams } from "../config.js";
 import Info from "./Info";
@@ -20,6 +21,15 @@ const Work = ({ children, isLast, ...props }) => {
         font-size: 18px;
         line-height: 20px;
         color: ${colors.blackRussian};
+        flex-direction: column;
+
+        @media screen and (min-width: 991px) {
+          flex-direction: row;
+        }
+
+        @media screen and (max-width: 991px) {
+          margin-bottom: 15px;
+        }
 
         ${!isLast &&
         css`
@@ -46,6 +56,9 @@ const PartyPopperWrapper = ({ children, ...props }) => {
 };
 
 const WorkExperience = ({ ...props }) => {
+  const containerSize = useSelector((store) => store.container);
+  const isMobile = containerSize.display == "mobile";
+
   return (
     <Area>
       <Title>Work experience</Title>
@@ -53,15 +66,14 @@ const WorkExperience = ({ ...props }) => {
         <DateRange from="2020 JAN" to="NOW" />
         <Position>Full stack developer</Position>
         <Company>Freelancer</Company>
-        <Tooltip
-          title="Let's work together!"
-          {...tooltipParams}
-        >
-          <PartyPopperWrapper>
-            <PartyPopper />
-            <PartyPopper isLast />
-          </PartyPopperWrapper>
-        </Tooltip>
+        {!isMobile && (
+          <Tooltip title="Let's work together!" {...tooltipParams}>
+            <PartyPopperWrapper>
+              <PartyPopper />
+              <PartyPopper isLast />
+            </PartyPopperWrapper>
+          </Tooltip>
+        )}
       </Work>
       <Work>
         <DateRange from="2017 AUG" to="2020 JAN" />

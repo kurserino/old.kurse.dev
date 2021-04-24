@@ -5,9 +5,9 @@ const Instagram = ({ children, url, ...props }) => {
   return (
     <a
       href={url}
+      target="_blank"
       css={css`
         display: flex;
-        max-width: 460px;
         float: left;
         text-decoration: none;
         color: #333;
@@ -15,8 +15,15 @@ const Instagram = ({ children, url, ...props }) => {
         border: 1px solid #d0d0d0;
         padding: 22px;
         align-items: center;
-        justify-content: space-between;
         border-radius: 5px;
+
+        @media screen and (min-width: 991px) {
+          max-width: 530px;
+        }
+        
+        @media screen and (max-width: 991px) {
+          margin-bottom: 15px;
+        }
       `}
     >
       <svg
@@ -31,7 +38,11 @@ const Instagram = ({ children, url, ...props }) => {
           fill="black"
         />
       </svg>
-      <div css={css``}>
+      <div
+        css={css`
+          padding-left: 22px;
+        `}
+      >
         <div
           css={css`
             font-weight: bold;
@@ -57,6 +68,9 @@ const Instagram = ({ children, url, ...props }) => {
         viewBox="0 0 19 20"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
+        css={css`
+          margin-left: auto;
+        `}
       >
         <path
           d="M7.8325 11.41C8.2425 11.8 8.2425 12.44 7.8325 12.83C7.4425 13.22 6.8025 13.22 6.4125 12.83C4.4625 10.88 4.4625 7.71001 6.4125 5.76001L9.9525 2.22001C11.9025 0.270007 15.0725 0.270007 17.0225 2.22001C18.9725 4.17001 18.9725 7.34001 17.0225 9.29001L15.5325 10.78C15.5425 9.96001 15.4125 9.14001 15.1325 8.36001L15.6025 7.88001C16.7825 6.71001 16.7825 4.81001 15.6025 3.64001C14.4325 2.46001 12.5325 2.46001 11.3625 3.64001L7.8325 7.17001C6.6525 8.34001 6.6525 10.24 7.8325 11.41ZM10.6525 7.17001C11.0425 6.78001 11.6825 6.78001 12.0725 7.17001C14.0225 9.12001 14.0225 12.29 12.0725 14.24L8.5325 17.78C6.5825 19.73 3.4125 19.73 1.4625 17.78C-0.4875 15.83 -0.4875 12.66 1.4625 10.71L2.9525 9.22001C2.9425 10.04 3.0725 10.86 3.3525 11.65L2.8825 12.12C1.7025 13.29 1.7025 15.19 2.8825 16.36C4.0525 17.54 5.9525 17.54 7.1225 16.36L10.6525 12.83C11.8325 11.66 11.8325 9.76001 10.6525 8.59001C10.2425 8.20001 10.2425 7.56001 10.6525 7.17001Z"

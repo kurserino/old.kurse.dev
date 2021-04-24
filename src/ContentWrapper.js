@@ -4,18 +4,18 @@ import colors from "./colors";
 import config from "./config";
 
 var ContentWrapper = ({ containerSize, ...props }) => {
-  var containerSize = {display: "desktop"}
+  var containerSize = { display: "desktop" };
   return (
     <div
       css={css`
         display: flex;
         flex-wrap: wrap;
-        background: #fff;
-        border: 1px solid ${colors.blackRussian};
-        border-radius: ${config[containerSize.display].borderRadius}px;
-        padding: 15px;
+        padding: 0;
 
         @media screen and (min-width: 991px) {
+          border: 1px solid ${colors.blackRussian};
+          background: #fff;
+          border-radius: ${config[containerSize.display].borderRadius}px;
           padding: 20px;
         }
       `}

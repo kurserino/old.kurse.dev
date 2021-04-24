@@ -53,7 +53,6 @@ var CloseButton = ({ id, href, index, ...props }) => {
             } else {
               // Get the previous tab to show if last
               let closedIndex = tabs.findIndex((tab, i) => tab.id == id);
-              console.log(closedIndex);
               history.push(updatedTabs[closedIndex].href);
             }
           }

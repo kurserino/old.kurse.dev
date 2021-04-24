@@ -10,10 +10,15 @@ const Company = ({ children, ...props }) => {
         background: ${colors.lightGray};
         border: 1px solid #dcdcdc;
         box-sizing: border-box;
-        border-radius: ${config.borderRadius}px;
+        border-radius: 0 0 ${config.borderRadius}px ${config.borderRadius}px;
         font-size: 16px;
         font-weight: 600;
         padding: 5px 10px;
+
+        @media screen and (min-width: 991px) {
+          border-radius: ${config.borderRadius}px;
+          border-bottom: none;
+        }
       `}
     >
       {children}

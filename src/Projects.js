@@ -1,12 +1,7 @@
-import React from "react";
+import React, { useRef } from "react";
 import { css, jsx } from "@emotion/react";
 import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
   useHistory,
-  useRouteMatch,
   useParams,
 } from "react-router-dom";
 import Modal from "./Projects/Modal";
@@ -15,10 +10,14 @@ import Snake from "./Projects/Snake";
 import OsExperiment from "./Projects/OsExperiment";
 import OctoShop from "./Projects/OctoShop";
 import Row from "./Projects/Row";
+import { useSelector } from "react-redux";
 
-var Projects = ({ setModalContent, containerSize }) => {
-  var { project } = useParams();
-  let history = useHistory();
+var Projects = ({ ...props }) => {
+  const { project } = useParams();
+  const history = useHistory();
+  const containerSize = useSelector((store) => store.container);
+  const isMobile = containerSize.display === "mobile";
+
   return (
     <div
       css={css`
@@ -31,11 +30,15 @@ var Projects = ({ setModalContent, containerSize }) => {
         <OsExperiment
           onClick={(e) => history.push("/projects/os-experiment")}
         />
-        <OctoShop onClick={(e) => history.push("/projects/octo-shop")} />
+        <OctoShop
+          onClick={(e) => history.push("/projects/octo-shop")}
+        />
       </Row>
       <Row>
-        <Password onClick={(e) => history.push("/projects/password")} />
-        <Snake />
+        <Password
+          onClick={(e) => history.push("/projects/password")}
+        />
+        {!isMobile && <Snake />}
       </Row>
     </div>
   );

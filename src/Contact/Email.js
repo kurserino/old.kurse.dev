@@ -20,12 +20,21 @@ const Email = ({ children, ...props }) => {
         font-size: 24.8341px;
         line-height: 30px;
         border-radius: 5px;
-        max-width: 375px;
+        margin-bottom: 20px;
+
+        @media screen and (min-width: 991px) {
         margin-bottom: auto;
+          max-width: 375px;
+        }
       `}
     >
       {children}
-      <Tooltip title="Copied!" {...tooltipParams} trigger="manual" open={copied}>
+      <Tooltip
+        title="Copied!"
+        {...tooltipParams}
+        trigger="manual"
+        open={copied}
+      >
         <CopyToClipboard
           text={children}
           onCopy={() => {

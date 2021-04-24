@@ -303,7 +303,7 @@ var Svg = (props) => (
 var StyledSvg = styled(Svg)`
   float: right;
   position: absolute;
-  width: 115%;
+  width: 130%;
   right: -35%;
   top: -4%;
 

@@ -5,10 +5,17 @@ const PartyPopper = ({ isLast, ...props }) => {
   return (
     <div
       css={css`
-        width: 50%;
-        padding-top: 5%;
+        order: 2;
+        margin: -15px;
+        margin-top: 10px;
+
+        @media screen and (min-width: 991px) {
         margin: -20px;
-        margin-right: initial;
+          order: 0;
+          width: 50%;
+          padding-top: 5%;
+          margin-right: initial;
+        }
       `}
     >
       <svg
@@ -23,7 +30,7 @@ const PartyPopper = ({ isLast, ...props }) => {
         x="0px"
         y="0px"
         viewBox="0 0 459.17 440.29"
-        enable-background="new 0 0 459.17 440.29"
+        enableBackground="new 0 0 459.17 440.29"
         xmlSpace="preserve"
       >
         <g id="a5c1342e-a5be-4d75-871b-112eb667a05a">
@@ -168,7 +175,7 @@ const PartyPopper = ({ isLast, ...props }) => {
                 <clipPath id="SVGID_14_">
                   <use xlinkHref="#SVGID_13_" overflow="visible" />
                 </clipPath>
-                <g clip-path="url(#SVGID_14_)">
+                <g clipPath="url(#SVGID_14_)">
                   <g>
                     <path
                       fill="#FFFFFF"
@@ -227,7 +234,7 @@ const PartyPopper = ({ isLast, ...props }) => {
                   <clipPath id="SVGID_16_">
                     <use xlinkHref="#SVGID_15_" overflow="visible" />
                   </clipPath>
-                  <g clip-path="url(#SVGID_16_)">
+                  <g clipPath="url(#SVGID_16_)">
                     <g>
                       <path
                         fill="#FFFFFF"
@@ -437,7 +444,7 @@ const PartyPopper = ({ isLast, ...props }) => {
                   <clipPath id="SVGID_18_">
                     <use xlinkHref="#SVGID_17_" overflow="visible" />
                   </clipPath>
-                  <g clip-path="url(#SVGID_18_)">
+                  <g clipPath="url(#SVGID_18_)">
                     <g>
                       <path
                         fill="#FFFFFF"
@@ -484,7 +491,7 @@ const PartyPopper = ({ isLast, ...props }) => {
                   <clipPath id="SVGID_20_">
                     <use xlinkHref="#SVGID_19_" overflow="visible" />
                   </clipPath>
-                  <g clip-path="url(#SVGID_20_)">
+                  <g clipPath="url(#SVGID_20_)">
                     <g>
                       <path
                         fill="#FFFFFF"
@@ -524,7 +531,7 @@ const PartyPopper = ({ isLast, ...props }) => {
                   <clipPath id="SVGID_22_">
                     <use xlinkHref="#SVGID_21_" overflow="visible" />
                   </clipPath>
-                  <g clip-path="url(#SVGID_22_)">
+                  <g clipPath="url(#SVGID_22_)">
                     <g>
                       <path
                         fill="#FFFFFF"
@@ -558,7 +565,7 @@ const PartyPopper = ({ isLast, ...props }) => {
                   <clipPath id="SVGID_24_">
                     <use xlinkHref="#SVGID_23_" overflow="visible" />
                   </clipPath>
-                  <g clip-path="url(#SVGID_24_)">
+                  <g clipPath="url(#SVGID_24_)">
                     <g>
                       <path
                         fill="#FFFFFF"
@@ -589,7 +596,7 @@ const PartyPopper = ({ isLast, ...props }) => {
                   <clipPath id="SVGID_26_">
                     <use xlinkHref="#SVGID_25_" overflow="visible" />
                   </clipPath>
-                  <g clip-path="url(#SVGID_26_)">
+                  <g clipPath="url(#SVGID_26_)">
                     <g>
                       <path
                         fill="#FFFFFF"
@@ -642,7 +649,7 @@ const PartyPopper = ({ isLast, ...props }) => {
                   <clipPath id="SVGID_28_">
                     <use xlinkHref="#SVGID_27_" overflow="visible" />
                   </clipPath>
-                  <g clip-path="url(#SVGID_28_)">
+                  <g clipPath="url(#SVGID_28_)">
                     <g>
                       <path
                         fill="#FFFFFF"
@@ -681,7 +688,7 @@ const PartyPopper = ({ isLast, ...props }) => {
                   <clipPath id="SVGID_30_">
                     <use xlinkHref="#SVGID_29_" overflow="visible" />
                   </clipPath>
-                  <g clip-path="url(#SVGID_30_)">
+                  <g clipPath="url(#SVGID_30_)">
                     <g>
                       <path
                         fill="#FFFFFF"
@@ -714,7 +721,7 @@ const PartyPopper = ({ isLast, ...props }) => {
                   <clipPath id="SVGID_32_">
                     <use xlinkHref="#SVGID_31_" overflow="visible" />
                   </clipPath>
-                  <g clip-path="url(#SVGID_32_)">
+                  <g clipPath="url(#SVGID_32_)">
                     <g>
                       <path
                         fill="#FFFFFF"
@@ -747,7 +754,7 @@ const PartyPopper = ({ isLast, ...props }) => {
                   <clipPath id="SVGID_34_">
                     <use xlinkHref="#SVGID_33_" overflow="visible" />
                   </clipPath>
-                  <g clip-path="url(#SVGID_34_)">
+                  <g clipPath="url(#SVGID_34_)">
                     <g>
                       <path
                         fill="#FFFFFF"
@@ -784,7 +791,7 @@ const PartyPopper = ({ isLast, ...props }) => {
                   <clipPath id="SVGID_36_">
                     <use xlinkHref="#SVGID_35_" overflow="visible" />
                   </clipPath>
-                  <g clip-path="url(#SVGID_36_)">
+                  <g clipPath="url(#SVGID_36_)">
                     <g>
                       <path
                         fill="#FFFFFF"
@@ -817,7 +824,7 @@ const PartyPopper = ({ isLast, ...props }) => {
                   <clipPath id="SVGID_38_">
                     <use xlinkHref="#SVGID_37_" overflow="visible" />
                   </clipPath>
-                  <g clip-path="url(#SVGID_38_)">
+                  <g clipPath="url(#SVGID_38_)">
                     <g>
                       <path
                         fill="#FFFFFF"
@@ -978,7 +985,7 @@ const PartyPopper = ({ isLast, ...props }) => {
                   <clipPath id="SVGID_40_">
                     <use xlinkHref="#SVGID_39_" overflow="visible" />
                   </clipPath>
-                  <g clip-path="url(#SVGID_40_)">
+                  <g clipPath="url(#SVGID_40_)">
                     <path
                       fill="#EA0A8C"
                       d="M288.43,193.47c-1.05,0.21-2.11,0.34-3.18,0.4c-1.24,0.1-2.5,0.1-3.74,0
@@ -1089,7 +1096,7 @@ const PartyPopper = ({ isLast, ...props }) => {
                   <clipPath id="SVGID_42_">
                     <use xlinkHref="#SVGID_41_" overflow="visible" />
                   </clipPath>
-                  <g clip-path="url(#SVGID_42_)">
+                  <g clipPath="url(#SVGID_42_)">
                     <g>
                       <path
                         fill="#FFFFFF"
@@ -1121,7 +1128,7 @@ const PartyPopper = ({ isLast, ...props }) => {
                   <clipPath id="SVGID_44_">
                     <use xlinkHref="#SVGID_43_" overflow="visible" />
                   </clipPath>
-                  <g clip-path="url(#SVGID_44_)">
+                  <g clipPath="url(#SVGID_44_)">
                     <g>
                       <path
                         fill="#FFFFFF"
@@ -1152,7 +1159,7 @@ const PartyPopper = ({ isLast, ...props }) => {
                   <clipPath id="SVGID_46_">
                     <use xlinkHref="#SVGID_45_" overflow="visible" />
                   </clipPath>
-                  <g clip-path="url(#SVGID_46_)">
+                  <g clipPath="url(#SVGID_46_)">
                     <g>
                       <path
                         fill="#FFFFFF"
@@ -1184,7 +1191,7 @@ const PartyPopper = ({ isLast, ...props }) => {
                   <clipPath id="SVGID_48_">
                     <use xlinkHref="#SVGID_47_" overflow="visible" />
                   </clipPath>
-                  <g clip-path="url(#SVGID_48_)">
+                  <g clipPath="url(#SVGID_48_)">
                     <g>
                       <path
                         fill="#FFFFFF"
@@ -1217,7 +1224,7 @@ const PartyPopper = ({ isLast, ...props }) => {
                   <clipPath id="SVGID_50_">
                     <use xlinkHref="#SVGID_49_" overflow="visible" />
                   </clipPath>
-                  <g clip-path="url(#SVGID_50_)">
+                  <g clipPath="url(#SVGID_50_)">
                     <g>
                       <path
                         fill="#FFFFFF"
@@ -1250,7 +1257,7 @@ const PartyPopper = ({ isLast, ...props }) => {
                   <clipPath id="SVGID_52_">
                     <use xlinkHref="#SVGID_51_" overflow="visible" />
                   </clipPath>
-                  <g clip-path="url(#SVGID_52_)">
+                  <g clipPath="url(#SVGID_52_)">
                     <g>
                       <path
                         fill="#FFFFFF"
@@ -1283,7 +1290,7 @@ const PartyPopper = ({ isLast, ...props }) => {
                   <clipPath id="SVGID_54_">
                     <use xlinkHref="#SVGID_53_" overflow="visible" />
                   </clipPath>
-                  <g clip-path="url(#SVGID_54_)">
+                  <g clipPath="url(#SVGID_54_)">
                     <g>
                       <path
                         fill="#FFFFFF"
@@ -1313,7 +1320,7 @@ const PartyPopper = ({ isLast, ...props }) => {
                   <clipPath id="SVGID_56_">
                     <use xlinkHref="#SVGID_55_" overflow="visible" />
                   </clipPath>
-                  <g clip-path="url(#SVGID_56_)">
+                  <g clipPath="url(#SVGID_56_)">
                     <g>
                       <path
                         fill="#FFFFFF"
@@ -1345,7 +1352,7 @@ const PartyPopper = ({ isLast, ...props }) => {
                   <clipPath id="SVGID_58_">
                     <use xlinkHref="#SVGID_57_" overflow="visible" />
                   </clipPath>
-                  <g clip-path="url(#SVGID_58_)">
+                  <g clipPath="url(#SVGID_58_)">
                     <path
                       fill="#EA0A8C"
                       d="M348.25,124.69c-0.24-0.3-0.42-0.64-0.54-1c-0.31-0.66-0.7-1.62-1.34-2.88

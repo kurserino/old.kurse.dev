@@ -14,15 +14,20 @@ const Contact = ({ ...props }) => {
         position: relative;
         display: flex;
         width: 100%;
+        flex-direction: column;
+
+        @media screen and (min-width: 991px) {
+          flex-direction: row;
+        }
       `}
     >
       <Dog />
       <Info>
         <Title>Let’s work together</Title>
         <Text>Or just say a hello! You can send me a email:</Text>
-        <Title isSmall>My email</Title>
+        {/* <Title isSmall>My email</Title> */}
         <Email>lucas.kurse@hotmail.com</Email>
-        <Instagram url="#"/>
+        <Instagram url="https://instagram.com/kuurse" />
       </Info>
     </div>
   );

@@ -1,5 +1,33 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const tabs = [
+  {
+    id: 1,
+    title: "Projects",
+    href: "/",
+  },
+  // {
+  //   id: 2,
+  //   title: "Articles",
+  //   href: "/articles",
+  // },
+  {
+    id: 3,
+    title: "About me",
+    href: "/about-me",
+  },
+  // {
+  //   id: 4,
+  //   title: "Illustrations",
+  //   href: "/illustrations",
+  // },
+  {
+    id: 5,
+    title: "Contact",
+    href: "/contact",
+  },
+];
+
 export const tabsSlice = createSlice({
   name: "tabs",
   initialState: {
@@ -9,6 +37,7 @@ export const tabsSlice = createSlice({
     lockedTranslateX: 0,
     leftOffset: 0,
     dragging: false,
+    isOpen: false,
     rect: {
       bottom: 0,
       height: 0,
@@ -19,34 +48,9 @@ export const tabsSlice = createSlice({
       x: 0,
       y: 0,
     },
-    closedTabs:[],
-    tabs: [
-      {
-        id: 1,
-        title: "Projects",
-        href: "/",
-      },
-      {
-        id: 2,
-        title: "Articles",
-        href: "/articles",
-      },
-      {
-        id: 3,
-        title: "About me",
-        href: "/about-me",
-      },
-      {
-        id: 4,
-        title: "Illustrations",
-        href: "/illustrations",
-      },
-      {
-        id: 5,
-        title: "Contact",
-        href: "/contact",
-      },
-    ],
+    closedTabs: [],
+    tabs: [...tabs],
+    menu: [...tabs],
   },
   reducers: {
     setTabs: (state, action) => {
@@ -55,7 +59,7 @@ export const tabsSlice = createSlice({
     setClosedTabs: (state, action) => {
       state.closedTabs = action.payload;
     },
-    setTabsLeftOffset: (state, action) =>{
+    setTabsLeftOffset: (state, action) => {
       state.leftOffset = action.payload;
     },
     setInitialPos: (state, action) => {
@@ -73,6 +77,9 @@ export const tabsSlice = createSlice({
     setRect: (state, action) => {
       state.rect = action.payload;
     },
+    setOpen: (state, action) => {
+      state.isOpen = action.payload;
+    },
   },
 });
 
@@ -86,6 +93,7 @@ export const {
   setRect,
   setTabs,
   setClosedTabs,
+  setOpen,
 } = tabsSlice.actions;
 
 // The function below is called a thunk and allows us to perform async logic. It

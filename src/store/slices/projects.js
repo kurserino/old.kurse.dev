@@ -10,7 +10,7 @@ export const containerSlice = createSlice({
       state.width = action.payload.width;
       state.height = action.payload.height;
       state.display = action.payload.display;
-    }
+    },
   },
 });
 

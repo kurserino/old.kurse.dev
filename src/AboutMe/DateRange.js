@@ -11,11 +11,20 @@ const DateRange = ({ from, to, ...props }) => {
         background: #f8f8f8;
         border: 1px solid #dcdcdc;
         box-sizing: border-box;
-        border-radius: ${config.borderRadius}px;
         padding: 5px 10px;
         font-weight: 900;
         font-size: 15px;
-        margin-right: 8px;
+        border-radius: ${config.borderRadius}px ${config.borderRadius}px 0 0;
+        margin-right: 0;
+
+        @media screen and (min-width: 991px) {
+          border-radius: ${config.borderRadius}px;
+          margin-right: 8px;
+        }
+
+        @media screen and (max-width: 991px) {
+          border-bottom: none;
+        }
       `}
     >
       <svg

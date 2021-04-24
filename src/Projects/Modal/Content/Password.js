@@ -34,9 +34,7 @@ var OctoShop = ({ ...props }) => (
       </a>
       .
     </Text>
-    <Text>
-    Game was developed in 48 hours with Godot Engine.
-    </Text>
+    <Text>Game was developed in 48 hours with Godot Engine.</Text>
     <ButtonsWrapper>
       <Button
         href="https://globalgamejam.org/2021/games/password-4"

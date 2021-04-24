@@ -20,7 +20,7 @@ function useContainerSize(ref) {
           setContainerSize({
             width: container.offsetWidth,
             height: container.offsetHeight,
-            display: container.offsetWidth > 911 ? "desktop" : "mobile",
+            display: container.offsetWidth >= 991 ? "desktop" : "mobile",
           });
         }
       }

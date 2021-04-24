@@ -1,10 +1,23 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const Instagram = require("instagram-web-api");
+const axios = require("axios");
 const path = require("path");
 const app = express();
 const api = express.Router();
 require("dotenv").config();
+
+const mongoose = require("mongoose");
+mongoose.connect("mongodb://localhost/kurse", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+const db = mongoose.connection;
+db.on("error", console.error.bind(console, "connection error:"));
+db.once("open", function () {
+  // we're connected!
+  console.log("Mongodb connected.");
+});
 
 app.use(express.static(path.join(__dirname, "public")));
 
@@ -22,15 +35,7 @@ api.get("/", function (req, res) {
 api.get("/illustrations", async (req, res) => {
   const { IG_USER, IG_PASSWORD } = process.env;
 
-  const client = new Instagram({ IG_USER, IG_PASSWORD });
-  console.log(IG_USER);
-
-  await client.login();
-
-  var illustrations = await client.getUserByUsername({
-    username: IG_USER,
-  });
-  res.json(illustrations);
+  res.json({ message: "Nozes" });
 });
 
 app.use("/api", api);

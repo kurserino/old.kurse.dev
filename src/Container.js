@@ -28,7 +28,11 @@ var Container = ({ ...props }) => {
         flex-direction: column;
         max-width: ${container.maxWidth}px;
         margin: 0 auto;
-        padding: 24px;
+        padding: 16px;
+
+        @media screen and (min-width: 991px){
+          padding: 24px;
+        }
       `}
       ref={containerRef}
       {...props}

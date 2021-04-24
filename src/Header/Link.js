@@ -12,6 +12,9 @@ var Link = (props) => (
       font-size: 15.3734px;
       letter-spacing: 0.1em;
       text-transform: uppercase;
+
+      @media screen and (min-width: 991px){
+      }
     `}
     {...props}
   >

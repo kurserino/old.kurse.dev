@@ -192,7 +192,7 @@ var Snake = ({ containerSize }) => {
 
     // Paint square
     const square = (x, y) => {
-      ctx.fillStyle = "#3F3F3F";
+      ctx.fillStyle = "#222428";
       ctx.fillRect(unit.x * x, unit.y * y, unit.x + 1, unit.y + 1);
       ctx.fill();
     };
@@ -240,7 +240,6 @@ var Snake = ({ containerSize }) => {
       renderFrame(ctx);
     }
     if (isGameOver && frameCount % 5 == 0) {
-      console.log("is game over!");
       snake = [...gameOver];
       food = [-1, -1];
       // Render frame
@@ -258,7 +257,6 @@ var Snake = ({ containerSize }) => {
 
     if (canvas.width !== width || canvas.height !== height) {
       canvas.width = width;
-      console.log(containerSize.width);
       canvas.height = gridHeight * containerSize.width;
       return true; // here you can return some usefull information like delta width and delta height instead of just true
       // this information can be used in the next redraw...
@@ -275,14 +273,18 @@ var Snake = ({ containerSize }) => {
   }, [containerSize]);
 
   useEffect(() => {
+    function preventDefault(e) {
+      e.preventDefault();
+    }
     if (isGameStarted) {
-      console.log("IS GAME STARTED");
+      // Disable scroll
+      window.addEventListener("keydown", preventDefault, false);
+
       // Bind moviment events
       var keydownHandler = (e) => {
         if (!isGameStarted) return;
         let isMovimentKey = Object.keys(moviment).includes(e.key);
         if (isMovimentKey) {
-          // console.log(e.key);
           if (e.key == "ArrowUp" && direction == "ArrowDown") return false;
           if (e.key == "ArrowDown" && direction == "ArrowUp") return false;
           if (e.key == "ArrowLeft" && direction == "ArrowRight") return false;
@@ -293,9 +295,12 @@ var Snake = ({ containerSize }) => {
       };
       document.addEventListener("keydown", keydownHandler);
     }
+    // Game ended
     return () => {
+      // Enable scroll
+      window.removeEventListener("keydown", preventDefault, false);
       document.removeEventListener("keydown", keydownHandler);
-      console.log("IS GAME ENDED");
+
       if (!isGameStarted) {
         // Unbind moviment events
       }

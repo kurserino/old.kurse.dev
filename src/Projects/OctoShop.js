@@ -3,17 +3,23 @@ import { css, jsx } from "@emotion/react";
 import colors from "../colors";
 import config from "../config";
 import Logo from "./OctoShop/Logo";
-import { useSelector, useDispatch } from "react-redux";
-var index = 2;
-var row = 1;
+import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 
-var OctoShop = ({ ...props }) => {
+var OctoShop = ({ projectRef, ...props }) => {
+  const { project } = useParams();
+  var isActive = project === "octo-shop";
   var containerSize = useSelector((state) => state.container);
+  const display = containerSize.display;
+  const isMobile = display === "mobile";
   var width = containerSize.width;
   var margin = config[containerSize.display].margin;
   var gridHeight = config[containerSize.display].grid.height;
+
+
   return (
     <div
+      ref={projectRef}
       css={css`
         display: flex;
         flex-direction: column;
@@ -22,13 +28,13 @@ var OctoShop = ({ ...props }) => {
         background-color: ${colors.dodgerBlue};
         overflow: hidden;
         position: relative;
-        margin: ${margin}px;
         border-radius: ${config[containerSize.display].borderRadius}px;
-        width: 100%;
+        width: calc(100% - ${margin});
         height: ${gridHeight * containerSize.width}px;
+        margin: 0 0 15px;
 
         @media screen and (min-width: 991px) {
-          /* width: ${width * 0.39 - margin}px; */
+          margin: ${margin}px;
           width: 40%;
           height: ${gridHeight * (width * 0.6)}px;
         }

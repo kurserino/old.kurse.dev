@@ -24,9 +24,11 @@ var Button = ({ children, isWhite, ...props }) => {
         padding: 0 22px;
         text-decoration: none;
         border: 1px solid ${colors.black};
+        margin-top: 15px;
 
         @media screen and (min-width: 991px) {
           margin-right: 10px;
+          margin-top: 0px;
         }
       `}
       {...props}

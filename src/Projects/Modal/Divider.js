@@ -7,7 +7,7 @@ var Divider = (props) => <div {...props}></div>;
 var StyledDivider = styled(Divider)`
   float: left;
   width: ${(props) => props.size}px;
-  height: 1px;
+  min-height: 1px;
   background: ${colors.black};
   margin: 20px 0;
 `;
