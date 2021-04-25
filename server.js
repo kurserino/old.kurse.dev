@@ -1,14 +1,12 @@
 const express = require("express");
-const bodyParser = require("body-parser");
-const Instagram = require("instagram-web-api");
-const axios = require("axios");
 const path = require("path");
 const app = express();
 const api = express.Router();
+const fs = require("fs");
 require("dotenv").config();
 
 const mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost/kurse", {
+mongoose.connect(process.env.MONGODB_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -19,10 +17,25 @@ db.once("open", function () {
   console.log("Mongodb connected.");
 });
 
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "build")));
+
+// Additional routes
+const routes = ["/api"];
+routesFiles = fs.readdirSync(path.join(__dirname, "/routes"));
+
+routesFiles.forEach((file) => {
+  var route = file.replace(".js", "");
+  var routeFolder = path.join(__dirname, route);
+  if (fs.existsSync(routeFolder)) {
+    app.use("/" + route, express.static(routeFolder));
+  }
+  routes.push(route);
+});
 
 app.get("*", function (req, res, next) {
-  if (req.url.startsWith("/api")) return next();
+  routes.forEach((route) => {
+    if (req.url.startsWith(route)) return next();
+  });
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
