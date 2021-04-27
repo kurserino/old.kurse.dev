@@ -27,7 +27,7 @@ routesFiles = fs.readdirSync(path.join(__dirname, "/routes"));
 
 routesFiles.forEach((file) => {
   var route = file.replace(".js", "");
-  var routeFolder = path.join(__dirname, route);
+  var routeFolder = path.join(__dirname, "public", route);
   if (fs.existsSync(routeFolder)) {
     app.use("/" + route, express.static(routeFolder));
   }

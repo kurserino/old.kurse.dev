@@ -107,4 +107,4 @@ dist
 build/
 
 # Projects
-os-experiment/
+/public/os-experiment/
