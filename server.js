@@ -36,7 +36,13 @@ app.get("*", function (req, res, next) {
   routes.forEach((route) => {
     if (req.url.startsWith(route)) return next();
   });
-  res.sendFile(path.join(__dirname, process.env.NODE_ENV == "development" ? "public" : "build", "index.html"));
+  res.sendFile(
+    path.join(
+      __dirname,
+      process.env.NODE_ENV == "development" ? "public" : "build",
+      "index.html"
+    )
+  );
 });
 
 // Running message
@@ -53,4 +59,27 @@ api.get("/illustrations", async (req, res) => {
 
 app.use("/api", api);
 
-app.listen(process.env.PORT || 8080);
+if (process.env.NODE_ENV == "development") {
+  app.listen(process.env.PORT || 8080);
+} else {
+  const httpsServer = https.createServer(
+    {
+      key: fs.readFileSync(SSL_KEY),
+      cert: fs.readFileSync(SSL_CERT),
+    },
+    app
+  );
+  
+  httpsServer.listen(443, () => {
+    console.log("HTTPS Server running on port 443");
+  });
+
+  http
+    .createServer(function (req, res) {
+      res.writeHead(301, {
+        Location: "https://" + req.headers["host"] + req.url,
+      });
+      res.end();
+    })
+    .listen(80);
+}
