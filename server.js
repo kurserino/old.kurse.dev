@@ -36,7 +36,7 @@ app.get("*", function (req, res, next) {
   routes.forEach((route) => {
     if (req.url.startsWith(route)) return next();
   });
-  res.sendFile(path.join(__dirname, "public", "index.html"));
+  res.sendFile(path.join(__dirname, process.env.NODE_ENV == "development" ? "public" : "build", "index.html"));
 });
 
 // Running message
