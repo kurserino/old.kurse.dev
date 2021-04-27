@@ -66,8 +66,8 @@ if (process.env.NODE_ENV == "development") {
 } else {
   const httpsServer = https.createServer(
     {
-      key: fs.readFileSync(SSL_KEY),
-      cert: fs.readFileSync(SSL_CERT),
+      key: fs.readFileSync(process.env.SSL_KEY),
+      cert: fs.readFileSync(process.env.SSL_CERT),
     },
     app
   );
