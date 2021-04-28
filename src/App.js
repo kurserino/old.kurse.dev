@@ -5,8 +5,8 @@ import {
   Switch,
   useLocation,
 } from "react-router-dom";
-
 import Page from "./Page";
+import Scrollbar from "./Scrollbar";
 import Projects from "./Projects";
 import AboutMe from "./AboutMe";
 import Contact from "./Contact";
@@ -14,25 +14,27 @@ import Illustrations from "./Illustrations";
 
 export default function App({ ...props }) {
   return (
-    <Page>
-      <Switch>
-        <Route exact path={["/", "/projects/:project"]}>
-          <Projects />
-        </Route>
-        <Route path="/about-me">
-          <AboutMe />
-        </Route>
-        <Route path="/contact">
-          <Contact />
-        </Route>
-        <Route path="/illustrations">
-          <Illustrations />
-        </Route>
-        <Route path="*">
-          <NoMatch />
-        </Route>
-      </Switch>
-    </Page>
+    <Scrollbar>
+      <Page>
+        <Switch>
+          <Route exact path={["/", "/projects/:project"]}>
+            <Projects />
+          </Route>
+          <Route path="/about-me">
+            <AboutMe />
+          </Route>
+          <Route path="/contact">
+            <Contact />
+          </Route>
+          <Route path="/illustrations">
+            <Illustrations />
+          </Route>
+          <Route path="*">
+            <NoMatch />
+          </Route>
+        </Switch>
+      </Page>
+    </Scrollbar>
   );
 }
 
