@@ -25,10 +25,10 @@ const OsExperiment = ({ ...props }) => (
       stuff.
     </Text>
     <ButtonsWrapper>
-      <Button href="https://kuurse.com" target="_blank">
+      <Button href="/os-experiment" target="_blank">
         Take a look at this project
       </Button>
-      <Button isWhite href="https://github.com/iamkrs/kuurse" target="_blank">
+      <Button isWhite href="https://github.com/iamkrs/os-experiment" target="_blank">
         <GithubIcon width={20} height={20} />
         View on github
       </Button>
