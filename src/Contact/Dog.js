@@ -10,7 +10,7 @@ const PartyPopper = ({ isLast, ...props }) => {
         margin-top: 10px;
 
         @media screen and (min-width: 991px) {
-        margin: -20px;
+          margin: -20px;
           order: 0;
           width: 50%;
           padding-top: 5%;
@@ -21,7 +21,12 @@ const PartyPopper = ({ isLast, ...props }) => {
       <svg
         css={css`
           float: left;
-          width: 100%;
+          width: 80%;
+
+          @media screen and (min-width: 991px) {
+            border-radius: 5px;
+            width: 100%;
+          }
         `}
         version="1.1"
         id="Layer_1"

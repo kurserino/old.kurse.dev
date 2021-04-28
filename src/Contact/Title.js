@@ -6,19 +6,18 @@ const Title = ({ children, isSmall, ...props }) => {
     <div
       css={css`
         font-weight: 900;
-        font-size: 27.3694px;
-        line-height: 33px;
+        font-size: 20px;
+        margin-bottom: 10px;
+
         ${!isSmall &&
         css`
           margin-top: auto;
         `}
-        ${isSmall &&
-        css`
-          font-size: 21px;
-          line-height: 25px;
-          margin-bottom: 14px;
-          /* padding-left: 10px; */
-        `}
+
+        @media screen and (min-width: 991px) {
+          font-size: 27.3694px;
+          line-height: 33px;
+        }
       `}
     >
       {children}

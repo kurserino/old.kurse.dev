@@ -17,14 +17,15 @@ const Email = ({ children, ...props }) => {
         border: 1px solid #dcdcdc;
         padding: 20px;
         font-weight: 300;
-        font-size: 24.8341px;
-        line-height: 30px;
+        font-size: 18px;
         border-radius: 5px;
         margin-bottom: 20px;
 
         @media screen and (min-width: 991px) {
-        margin-bottom: auto;
+          margin-bottom: auto;
           max-width: 375px;
+          font-size: 24.8341px;
+          line-height: 30px;
         }
       `}
     >
