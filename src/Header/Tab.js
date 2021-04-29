@@ -67,6 +67,7 @@ var Tab = ({ tabRefs, href, id, index, ...props }) => {
       <a
         ref={tabRef}
         onMouseDown={(e) => {
+          e.preventDefault();
           var isCloseButton = e.target.closest(".closeButton");
           if (isCloseButton) return;
 
@@ -159,7 +160,7 @@ var Tab = ({ tabRefs, href, id, index, ...props }) => {
             width: ${tabRef.current ? rect.width : 140}px;
             margin-right: -1px;
           `}
-        />
+        ></div>
       )}
     </>
   );

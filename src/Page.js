@@ -21,7 +21,6 @@ const Page = ({ children, containerRef, ...props }) => {
   var initialIndex = useSelector((state) => state.tabs.initialIndex);
   var initialClick = useSelector((state) => state.tabs.initialClick);
   // var { docX } = useSelector((state) => state.mouse);
-  var { docX } = window.mouse ? window.mouse : 0;
 
   // Update window state with size
   useEffect(() => {
@@ -65,6 +64,7 @@ const Page = ({ children, containerRef, ...props }) => {
 
               // Move tabs
               let activeIndex = tabs.findIndex((tab) => tab.id === dragging);
+              var { docX } = window.mouse ? window.mouse : 0;
               var distance = docX - initialClick;
               let tabWidth = rect.width;
               var tabCount = distance / tabWidth;
