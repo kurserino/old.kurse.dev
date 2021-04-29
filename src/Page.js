@@ -20,7 +20,8 @@ const Page = ({ children, containerRef, ...props }) => {
   const windowSize = useWindowSize();
   var initialIndex = useSelector((state) => state.tabs.initialIndex);
   var initialClick = useSelector((state) => state.tabs.initialClick);
-  var { docX } = useSelector((state) => state.mouse);
+  // var { docX } = useSelector((state) => state.mouse);
+  var { docX } = window.mouse ? window.mouse : 0;
 
   // Update window state with size
   useEffect(() => {

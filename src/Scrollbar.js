@@ -9,6 +9,7 @@ const Scrollbar = ({ children, ...props }) => {
       css={css`
         height: 100vh;
       `}
+      {...props}
     >
       {children}
     </PerfectScrollbar>

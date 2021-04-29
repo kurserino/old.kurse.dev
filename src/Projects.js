@@ -1,9 +1,6 @@
 import React, { useRef } from "react";
 import { css, jsx } from "@emotion/react";
-import {
-  useHistory,
-  useParams,
-} from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import Modal from "./Projects/Modal";
 import Password from "./Projects/Password";
 import Snake from "./Projects/Snake";
@@ -30,14 +27,10 @@ var Projects = ({ ...props }) => {
         <OsExperiment
           onClick={(e) => history.push("/projects/os-experiment")}
         />
-        <OctoShop
-          onClick={(e) => history.push("/projects/octo-shop")}
-        />
+        <OctoShop onClick={(e) => history.push("/projects/octo-shop")} />
       </Row>
       <Row>
-        <Password
-          onClick={(e) => history.push("/projects/password")}
-        />
+        <Password onClick={(e) => history.push("/projects/password")} />
         {!isMobile && <Snake />}
       </Row>
     </div>

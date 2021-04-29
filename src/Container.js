@@ -19,6 +19,7 @@ var Container = ({ ...props }) => {
 
   useEffect(() => {
     dispatch(setMouse(mouse));
+    window.mouse = mouse;
   }, [mouse]);
 
   return (
@@ -30,7 +31,7 @@ var Container = ({ ...props }) => {
         margin: 0 auto;
         padding: 16px;
 
-        @media screen and (min-width: 991px){
+        @media screen and (min-width: 991px) {
           padding: 24px;
         }
       `}

@@ -4,6 +4,7 @@ export const containerSlice = createSlice({
   name: "projects",
   initialState: {
     active: false,
+    isGameStarted: false,
   },
   reducers: {
     setContainer: (state, action) => {
@@ -11,10 +12,13 @@ export const containerSlice = createSlice({
       state.height = action.payload.height;
       state.display = action.payload.display;
     },
+    setGameStarted: (state, action) => {
+      state.isGameStarted = action.payload;
+    },
   },
 });
 
-export const { setContainer } = containerSlice.actions;
+export const { setContainer, setGameStarted } = containerSlice.actions;
 
 // The function below is called a thunk and allows us to perform async logic. It
 // can be dispatched like a regular action: `dispatch(incrementAsync(10))`. This

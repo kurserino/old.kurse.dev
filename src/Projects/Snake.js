@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import useCanvas from "../hooks/useCanvas";
 import { css, jsx } from "@emotion/react";
 import colors from "../colors";
 import config from "../config";
-import { useSelector, useDispatch } from "react-redux";
+import { setGameStarted } from "../store/slices/projects";
 
 const Canvas = ({ draw, canvasRef, ...props }) => {
   var containerSize = useSelector((state) => state.container);
@@ -11,6 +12,7 @@ const Canvas = ({ draw, canvasRef, ...props }) => {
   var display = containerSize.display;
   var margin = config[display].margin;
   var gridHeight = config[display].grid.height;
+
   return (
     <canvas
       ref={canvasRef}
@@ -183,7 +185,9 @@ var generateFoodPos = () => {
 };
 
 var Snake = ({ containerSize }) => {
-  const [isGameStarted, startGame] = useState(false);
+  const dispatch = useDispatch();
+  const isGameStarted = useSelector((store) => store.projects.isGameStarted);
+
   const renderFrame = (ctx) => {
     let unit = {
       x: ctx.canvas.width / (grid[0] + 1),
@@ -218,6 +222,8 @@ var Snake = ({ containerSize }) => {
     ) {
       isGameOver = true;
       window.gameOverTimer = setTimeout(() => onClickHandler(), 2000);
+      // Enable scroll
+      setScroll(true);
     }
     if (frameCount % 5 == 0 && isGameStarted && !isGameOver) {
       // Walk
@@ -272,37 +278,43 @@ var Snake = ({ containerSize }) => {
     }
   }, [containerSize]);
 
+  const setScroll = (isActive) => {
+    var scrollbar = document.querySelector("#root > .scrollbar-container");
+    scrollbar.style.scrollBehavior = isActive ? "initial" : "smooth";
+  };
+
   useEffect(() => {
-    function preventDefault(e) {
-      e.preventDefault();
-    }
     if (isGameStarted) {
-      // Disable scroll
-      window.addEventListener("keydown", preventDefault, false);
-
-      // Bind moviment events
       var keydownHandler = (e) => {
-        if (!isGameStarted) return;
-        let isMovimentKey = Object.keys(moviment).includes(e.key);
-        if (isMovimentKey) {
-          if (e.key == "ArrowUp" && direction == "ArrowDown") return false;
-          if (e.key == "ArrowDown" && direction == "ArrowUp") return false;
-          if (e.key == "ArrowLeft" && direction == "ArrowRight") return false;
-          if (e.key == "ArrowRight" && direction == "ArrowLeft") return false;
+        if (isGameStarted) {
+          // Moviment
+          let isMovimentKey = Object.keys(moviment).includes(e.key);
+          if (isMovimentKey) {
+            e.preventDefault();
 
-          direction = e.key;
+            if (e.key == "ArrowUp" && direction == "ArrowDown") return false;
+            if (e.key == "ArrowDown" && direction == "ArrowUp") return false;
+            if (e.key == "ArrowLeft" && direction == "ArrowRight") return false;
+            if (e.key == "ArrowRight" && direction == "ArrowLeft") return false;
+
+            direction = e.key;
+          }
+        }
+
+        // Disable scroll if not escape
+        if (e.key == "Escape") {
         }
       };
+      var wheelHandler = (e) => {
+        e.preventDefault();
+      };
       document.addEventListener("keydown", keydownHandler);
+      document.addEventListener("wheel", wheelHandler, { passive: false });
     }
     // Game ended
     return () => {
-      // Enable scroll
-      window.removeEventListener("keydown", preventDefault, false);
-      document.removeEventListener("keydown", keydownHandler);
-
-      if (!isGameStarted) {
-        // Unbind moviment events
+      if (isGameStarted) {
+        document.removeEventListener("keydown", keydownHandler);
       }
     };
   }, [isGameStarted]);
@@ -310,11 +322,11 @@ var Snake = ({ containerSize }) => {
   const onClickHandler = (e) => {
     if (!isGameStarted) {
       direction = initialState.direction;
-      startGame(true);
+      dispatch(setGameStarted(true));
     }
 
     if (isGameOver) {
-      startGame(false);
+      dispatch(setGameStarted(false));
       isGameOver = false;
       snake = [...initialState.snake];
       food = [...initialState.food];

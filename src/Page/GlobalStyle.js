@@ -2,10 +2,13 @@ import React, { useRef } from "react";
 import { Global, css } from "@emotion/react";
 import reset from "emotion-reset";
 import { useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 
 const GlobalStyle = ({ ...props }) => {
   const isMenuOpen = useSelector((state) => state.tabs.isOpen);
-  const isModalOpen = window.location.pathname.startsWith("/projects");
+  const isGameStarted = useSelector((state) => state.projects.isGameStarted);
+  const location = useLocation();
+  const isModalOpen = location.pathname.startsWith("/projects");
   const isScrollDisabled = isMenuOpen || isModalOpen;
 
   return (
@@ -37,9 +40,8 @@ const GlobalStyle = ({ ...props }) => {
 
         ${isScrollDisabled &&
         css`
-          body,
-          html {
-            overflow: hidden;
+          #root > .scrollbar-container {
+            scroll-behavior: smooth;
           }
         `}
       `}

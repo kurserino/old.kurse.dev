@@ -20,20 +20,26 @@ const modalContentIndex = {
   password: Password,
 };
 
-const Blocker = ({ ...props }) => (
-  <div
-    css={css`
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      background: ${colors.black};
-      opacity: 0.6;
-      z-index: 1;
-    `}
-  ></div>
-);
+const Blocker = ({ ...props }) => {
+  const history = useHistory();
+  return (
+    <div
+      onClick={(e) => {
+        history.push("/");
+      }}
+      css={css`
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background: ${colors.black};
+        opacity: 0.6;
+        z-index: 1;
+      `}
+    ></div>
+  );
+};
 
 const Modal = ({ children, modalContent, refs, ...props }) => {
   const { project } = useParams();
