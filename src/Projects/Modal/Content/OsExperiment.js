@@ -16,22 +16,14 @@ const OsExperiment = ({ ...props }) => (
     `}
   >
     <Title>OS EXPERIMENT</Title>
-    <Text>An interactive operating system simulation.</Text>
+    <Text>An interactive operating system experiment.</Text>
     <Divider size={100} />
-    <Text>
-      A way to show many different types of media in a single project made me
-      create this operating system environment to display my artworks and other
-      stuff.
-    </Text>
+    <Text></Text>
     <ButtonsWrapper>
       <Button href="/os-experiment" target="_blank">
         Take a look at this project
       </Button>
-      <Button
-        isWhite
-        href="https://github.com/iamkrs/os-experiment"
-        target="_blank"
-      >
+      <Button isWhite href="https://github.com/iamkrs/os-experiment" target="_blank">
         <GithubIcon width={20} height={20} />
         View on github
       </Button>

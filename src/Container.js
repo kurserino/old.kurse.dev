@@ -1,4 +1,5 @@
-import React, { useRef, useEffect, useLayoutEffect } from "react";
+import React, { useRef, useEffect } from "react";
+import { useIsomorphicLayoutEffect } from "react-use";
 import { css } from "@emotion/react";
 import useContainerSize from "./hooks/useContainerSize";
 import { useMouse } from "react-use";
@@ -13,7 +14,7 @@ var Container = ({ ...props }) => {
   const container = useAppSelector((store) => store.container);
   const mouse = useMouse(containerRef);
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     dispatch(setContainer(containerSize));
   }, [containerSize, dispatch]);
 

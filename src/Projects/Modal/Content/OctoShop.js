@@ -16,12 +16,9 @@ const OctoShop = ({ ...props }) => (
     `}
   >
     <Title>OCTO.SHOP</Title>
-    <Text>Frontend project for a magento ecommerce at OctoXB company.</Text>
+    <Text>Frontend for a magento ecommerce @ OctoXB.</Text>
     <Divider size={100} />
-    <Text>
-      Octo is an ecommerce and technology company that connect brazilian
-      consumers and chinese sellers.
-    </Text>
+    <Text>Octo.shop is an ecommerce, part of OctoXB, a plataform that connect brazilian consumers and chinese sellers.</Text>
     <ButtonsWrapper>
       <Button href="https://octo.shop" target="_blank">
         Take a look at this project

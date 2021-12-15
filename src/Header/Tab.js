@@ -50,7 +50,6 @@ var Tab = ({ tabRefs, href, id, index, ...props }) => {
   var isMobile = containerSize.display === "mobile";
 
   if (!isDragging) {
-    console.log("pickles");
   }
 
   return (

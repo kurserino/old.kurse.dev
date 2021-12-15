@@ -1,70 +1,51 @@
 const express = require("express");
+const next = require("next");
 const path = require("path");
-const app = express();
-const api = express.Router();
 const fs = require("fs");
 const https = require("https");
 const http = require("http");
 require("dotenv").config();
 
-const mongoose = require("mongoose");
-mongoose.connect(process.env.MONGODB_URL, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
-const db = mongoose.connection;
-db.on("error", console.error.bind(console, "connection error:"));
-db.once("open", function () {
-  // we're connected!
-  console.log("Mongodb connected.");
-});
+const port = parseInt(process.env.PORT, 10) || 3000;
+const dev = process.env.NODE_ENV !== "production";
+const app = next({ dev });
+const handle = app.getRequestHandler();
 
-app.use(express.static(path.join(__dirname, "build")));
+app.prepare().then(() => {
+  const server = express();
 
-// Additional routes
-const routes = ["/api"];
-var routesFiles = fs.readdirSync(path.join(__dirname, "routes"));
-routesFiles.forEach((file) => {
-  var route = file.replace(".js", "");
-  app.use(require(path.join(__dirname, "routes", file)));
-  routes.push("/" + route);
-});
+  // Projects
+  server.use("/os-experiment", express.static(path.join(__dirname, "public/os-experiment")));
 
-app.get("*", function (req, res, next) {
-  routes.forEach((route) => {
-    if (req.url.startsWith(route)) return next();
-  });
-  res.sendFile(path.join(__dirname, "build", "index.html"));
-});
-
-// Running message
-api.get("/", function (req, res) {
-  res.json({ message: "Api running." });
-});
-
-app.use("/api", api);
-
-if (process.env.NODE_ENV === "development") {
-  app.listen(process.env.PORT || 8080);
-} else {
-  const httpsServer = https.createServer(
-    {
-      key: fs.readFileSync(process.env.SSL_KEY),
-      cert: fs.readFileSync(process.env.SSL_CERT),
-    },
-    app
-  );
-
-  httpsServer.listen(443, () => {
-    console.log("HTTPS Server running on port 443");
+  server.all("*", (req, res) => {
+    return handle(req, res);
   });
 
-  http
-    .createServer(function (req, res) {
-      res.writeHead(301, {
-        Location: "https://" + req.headers["host"] + req.url,
-      });
-      res.end();
-    })
-    .listen(80);
-}
+  if (process.env.NODE_ENV === "development") {
+    server.listen(port, (err) => {
+      if (err) throw err;
+      console.log(`> Ready on http://localhost:${port}`);
+    });
+  } else {
+    const httpsServer = https.createServer(
+      {
+        key: fs.readFileSync(process.env.SSL_KEY),
+        cert: fs.readFileSync(process.env.SSL_CERT),
+      },
+      server
+    );
+
+    httpsServer.listen(443, () => {
+      console.log("HTTPS Server running on port 443");
+    });
+
+    http
+      .createServer(function (req, res) {
+        res.writeHead(301, {
+          Location: "https://" + req.headers["host"] + req.url,
+        });
+        res.end();
+      })
+      .listen(80);
+  }
+});

@@ -1,10 +1,11 @@
 import React from "react";
 import useResizeObserver from "@react-hook/resize-observer";
+import { useIsomorphicLayoutEffect } from "react-use";
 
 const useSize = (target) => {
   const [size, setSize] = React.useState();
 
-  React.useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     setSize(target.current.getBoundingClientRect());
   }, [target]);
 
