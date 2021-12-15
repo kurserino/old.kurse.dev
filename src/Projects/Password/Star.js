@@ -1,15 +1,14 @@
-import React from "react";
-import {css, jsx} from "@emotion/react";
+import { css } from "@emotion/react";
 
-var Svg = ({containerSize, ...props}) => (
+var Svg = ({ containerSize, ...props }) => (
   <svg
-  css={css`
-    float: right;
-  position: absolute;
-  width: 16%;
-  right: 10%;
-  bottom: 17%;
-  `}
+    css={css`
+      float: right;
+      position: absolute;
+      width: 16%;
+      right: 10%;
+      bottom: 17%;
+    `}
     {...props}
     version="1.1"
     xmlns="http://www.w3.org/2000/svg"
@@ -23,6 +22,5 @@ var Svg = ({containerSize, ...props}) => (
     />
   </svg>
 );
-
 
 export default Svg;

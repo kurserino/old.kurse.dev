@@ -1,14 +1,14 @@
 import React, { Component } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { css, jsx } from "@emotion/react";
+import { useAppSelector, useAppDispatch } from "../hooks";
+import { css } from "@emotion/react";
 import colors from "../colors";
 import { setOpen } from "../store/slices/tabs";
 
 const width = 21;
 
 const Burger = ({ children, ...props }) => {
-  const dispatch = useDispatch();
-  const isOpen = useSelector((store) => store.tabs.isOpen);
+  const dispatch = useAppDispatch();
+  const isOpen = useAppSelector((store) => store.tabs.isOpen);
 
   return (
     <div

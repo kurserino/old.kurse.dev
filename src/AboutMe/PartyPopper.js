@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { css, jsx } from "@emotion/react";
+import { css } from "@emotion/react";
 import Confetti from "react-dom-confetti";
 
 const config = {
@@ -26,7 +26,7 @@ const PartyPopper = ({ isLast, ...props }) => {
           margin-right: 6px;
         `}
       `}
-      onClick={e => {
+      onClick={(e) => {
         setConfetti(true);
         setTimeout(() => setConfetti(false), 3000);
       }}

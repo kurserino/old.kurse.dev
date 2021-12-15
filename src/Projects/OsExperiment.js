@@ -1,16 +1,17 @@
-import React, { useState } from "react";
-import { css, jsx } from "@emotion/react";
+import { css } from "@emotion/react";
 import colors from "../colors";
 import config from "../config";
 import Reincarnation from "./OsExperiment/Reincarnation";
 import Logo from "./OsExperiment/Logo";
-import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useAppSelector } from "../hooks";
+import { useRouter } from "next/router";
 
 var OsExperiment = ({ projectRef, ...props }) => {
-  const { project } = useParams();
+  const router = useRouter();
+  const { project } = router.query;
+
   var isActive = project === "os-experiment";
-  var containerSize = useSelector((state) => state.container);
+  var containerSize = useAppSelector((state) => state.container);
   var width = containerSize.width;
   var display = containerSize.display;
   const isMobile = display === "mobile";

@@ -1,20 +1,15 @@
-import React, { useState } from "react";
-import { css, jsx } from "@emotion/react";
-import { useSelector, useDispatch } from "react-redux";
+import { css } from "@emotion/react";
+import { useAppSelector } from "../hooks";
 import colors from "../colors";
 import config from "../config";
 import Star from "./Password/Star";
 import Box from "./Password/Box";
 import Logo from "./Password/Logo";
-import { useParams } from "react-router-dom";
 
-var Password = ({ projectRef, containerSize, ...props }) => {
-  const { project } = useParams();
-  var isActive = project === "password";
-  var containerSize = useSelector((state) => state.container);
+var Password = ({ projectRef, ...props }) => {
+  var containerSize = useAppSelector((state) => state.container);
   var width = containerSize.width ? containerSize.width : 0;
   var display = containerSize.display;
-  const isMobile = display === "mobile";
   var margin = config[display].margin;
   var gridHeight = config[display].grid.height;
   return (

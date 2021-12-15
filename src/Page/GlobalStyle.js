@@ -1,14 +1,14 @@
 import React, { useRef } from "react";
 import { Global, css } from "@emotion/react";
 import reset from "emotion-reset";
-import { useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
+import { useAppSelector } from "../hooks";
+import { useRouter } from "next/router";
 
 const GlobalStyle = ({ ...props }) => {
-  const isMenuOpen = useSelector((state) => state.tabs.isOpen);
-  const isGameStarted = useSelector((state) => state.projects.isGameStarted);
-  const location = useLocation();
-  const isModalOpen = location.pathname.startsWith("/projects");
+  const isMenuOpen = useAppSelector((state) => state.tabs.isOpen);
+  const isGameStarted = useAppSelector((state) => state.projects.isGameStarted);
+  const router = useRouter();
+  const isModalOpen = router.pathname.startsWith("/projects");
   const isScrollDisabled = isMenuOpen || isModalOpen;
 
   return (
@@ -40,7 +40,7 @@ const GlobalStyle = ({ ...props }) => {
 
         ${isScrollDisabled &&
         css`
-          #root > .scrollbar-container {
+          #__next > .scrollbar-container {
             scroll-behavior: smooth;
           }
         `}

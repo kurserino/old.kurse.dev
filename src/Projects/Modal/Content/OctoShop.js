@@ -1,5 +1,5 @@
 import React from "react";
-import { css, jsx } from "@emotion/react";
+import { css } from "@emotion/react";
 import Title from "../Title";
 import Text from "../Text";
 import Divider from "../Divider";

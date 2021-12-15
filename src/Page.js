@@ -1,26 +1,24 @@
-import React, { useEffect, useRef, useState } from "react";
-import { css, jsx } from "@emotion/react";
+import { useEffect, useRef, useState } from "react";
+import { css } from "@emotion/react";
 import arrayMove from "array-move";
 import Header from "./Header";
 import Container from "./Container";
 import ContentWrapper from "./ContentWrapper";
 import GlobalStyle from "./Page/GlobalStyle";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useAppSelector, useAppDispatch } from "./hooks";
 import { setDragging, setRect, setTabs } from "./store/slices/tabs";
-import { setSize } from "./store/slices/window";
 import useWindowSize from "./hooks/useWindowSize";
 import { setWindowSize } from "./store/slices/window";
 
 const Page = ({ children, containerRef, ...props }) => {
-  const dispatch = useDispatch();
-  const dragging = useSelector((state) => state.tabs.dragging);
-  const tabs = useSelector((state) => state.tabs.tabs);
+  const dispatch = useAppDispatch();
+  const dragging = useAppSelector((state) => state.tabs.dragging);
+  const tabs = useAppSelector((state) => state.tabs.tabs);
   const [tabOffset, setTabOffset] = useState(0);
   const windowSize = useWindowSize();
-  var initialIndex = useSelector((state) => state.tabs.initialIndex);
-  var initialClick = useSelector((state) => state.tabs.initialClick);
-  // var { docX } = useSelector((state) => state.mouse);
+  var initialIndex = useAppSelector((state) => state.tabs.initialIndex);
+  var initialClick = useAppSelector((state) => state.tabs.initialClick);
+  // var { docX } = useAppSelector((state) => state.mouse);
 
   // Update window state with size
   useEffect(() => {
@@ -44,53 +42,49 @@ const Page = ({ children, containerRef, ...props }) => {
   }
 
   return (
-    <Router>
-      <div
-        css={css``}
-        onMouseLeave={() => dispatch(setDragging(false))}
-        onMouseUp={() => dispatch(setDragging(false))}
-        onDragEnd={() => dispatch(setDragging(false))}
-      >
-        <GlobalStyle />
-        <Container
-          onMouseMove={() => {
-            if (rectDOM) {
-              // console.log(rectDOM.left)
-            }
-            if (dragging && rectDOM) {
-              // Update rect
-              let rect = JSON.parse(JSON.stringify(rectDOM));
-              dispatch(setRect(rect));
+    <div
+      css={css``}
+      onMouseLeave={() => dispatch(setDragging(false))}
+      onMouseUp={() => dispatch(setDragging(false))}
+      onDragEnd={() => dispatch(setDragging(false))}
+    >
+      <GlobalStyle />
+      <Container
+        onMouseMove={() => {
+          if (rectDOM) {
+            // console.log(rectDOM.left)
+          }
+          if (dragging && rectDOM) {
+            // Update rect
+            let rect = JSON.parse(JSON.stringify(rectDOM));
+            dispatch(setRect(rect));
 
-              // Move tabs
-              let activeIndex = tabs.findIndex((tab) => tab.id === dragging);
-              var { docX } = window.mouse ? window.mouse : 0;
-              var distance = docX - initialClick;
-              let tabWidth = rect.width;
-              var tabCount = distance / tabWidth;
-              var direction =
-                Math.sign(tabCount) < 0
-                  ? parseInt(tabCount - 0.5)
-                  : parseInt(tabCount + 0.5);
-              var calculatedIndex = initialIndex + direction;
-              if (activeIndex != calculatedIndex && calculatedIndex >= 0) {
-                dispatch(
-                  setTabs(arrayMove(tabs, activeIndex, calculatedIndex))
-                );
-              }
+            // Move tabs
+            let activeIndex = tabs.findIndex((tab) => tab.id === dragging);
+            var { docX } = window.mouse ? window.mouse : 0;
+            var distance = docX - initialClick;
+            let tabWidth = rect.width;
+            var tabCount = distance / tabWidth;
+            var direction =
+              Math.sign(tabCount) < 0
+                ? parseInt(tabCount - 0.5)
+                : parseInt(tabCount + 0.5);
+            var calculatedIndex = initialIndex + direction;
+            if (activeIndex != calculatedIndex && calculatedIndex >= 0) {
+              dispatch(setTabs(arrayMove(tabs, activeIndex, calculatedIndex)));
             }
-          }}
-        >
-          <Header
-            windowSize={windowSize}
-            dragging={[dragging, setDragging]}
-            tabOffset={[tabOffset, setTabOffset]}
-            tabRefs={tabRefs}
-          />
-          <ContentWrapper>{children}</ContentWrapper>
-        </Container>
-      </div>
-    </Router>
+          }
+        }}
+      >
+        <Header
+          windowSize={windowSize}
+          dragging={[dragging, setDragging]}
+          tabOffset={[tabOffset, setTabOffset]}
+          tabRefs={tabRefs}
+        />
+        <ContentWrapper>{children}</ContentWrapper>
+      </Container>
+    </div>
   );
 };
 

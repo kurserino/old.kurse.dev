@@ -1,11 +1,11 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { css, jsx } from "@emotion/react";
+import { useAppSelector } from "../../hooks";
+import { css } from "@emotion/react";
 import colors from "../../colors";
 import config from "../../config";
 
 var Button = ({ children, isWhite, ...props }) => {
-  var containerSize = useSelector((state) => state.container);
+  var containerSize = useAppSelector((state) => state.container);
   var display = containerSize.display;
   var borderRadius = config[display].borderRadius;
 

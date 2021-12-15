@@ -1,26 +1,26 @@
-import React, { useRef, useEffect } from "react";
-import { css, jsx } from "@emotion/react";
+import React, { useRef, useEffect, useLayoutEffect } from "react";
+import { css } from "@emotion/react";
 import useContainerSize from "./hooks/useContainerSize";
 import { useMouse } from "react-use";
-import { useSelector, useDispatch } from "react-redux";
+import { useAppSelector, useAppDispatch } from "./hooks";
 import { setContainer } from "./store/slices/container";
 import { setMouse } from "./store/slices/mouse";
 
 var Container = ({ ...props }) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const containerRef = useRef(null);
   const containerSize = useContainerSize(containerRef);
-  const container = useSelector((store) => store.container);
+  const container = useAppSelector((store) => store.container);
   const mouse = useMouse(containerRef);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     dispatch(setContainer(containerSize));
-  }, [containerSize]);
+  }, [containerSize, dispatch]);
 
   useEffect(() => {
     dispatch(setMouse(mouse));
     window.mouse = mouse;
-  }, [mouse]);
+  }, [dispatch, mouse]);
 
   return (
     <div

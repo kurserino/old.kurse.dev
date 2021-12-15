@@ -1,10 +1,8 @@
 import React from "react";
-import { css, jsx } from "@emotion/react";
 import Avatar from "./Avatar";
 import Name from "./Name";
 import Text from "./Text";
 import Area from "./Area";
-
 
 const Info = ({ ...props }) => {
   return (

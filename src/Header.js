@@ -1,13 +1,13 @@
 import React from "react";
-import { css, jsx } from "@emotion/react";
+import { css } from "@emotion/react";
 import Logo from "./Header/Logo";
 import Tabs from "./Header/Tabs";
 import Icons from "./Header/Icons";
 import Burger from "./Header/Burger";
-import { useSelector } from "react-redux";
+import { useAppSelector } from "./hooks";
 
 var Header = ({ windowSize, mouse, tabRefs, tabOffset, ...props }) => {
-  const containerSize = useSelector((store) => store.container);
+  const containerSize = useAppSelector((store) => store.container);
   return (
     <div
       css={css`

@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useEffect } from "react";
+import { useAppSelector, useAppDispatch } from "../hooks";
 import useCanvas from "../hooks/useCanvas";
-import { css, jsx } from "@emotion/react";
+import { css } from "@emotion/react";
 import colors from "../colors";
 import config from "../config";
 import { setGameStarted } from "../store/slices/projects";
 
 const Canvas = ({ draw, canvasRef, ...props }) => {
-  var containerSize = useSelector((state) => state.container);
+  var containerSize = useAppSelector((state) => state.container);
   var width = containerSize.width;
   var display = containerSize.display;
   var margin = config[display].margin;
@@ -148,7 +148,7 @@ var gameOver = [
   [23, 16],
 ];
 
-var score = 0;
+// var score = 0;
 var isGameOver = false;
 var grid = [31, 21];
 var food = [...initialState.food];
@@ -158,13 +158,13 @@ var moviment = {
     return [head[0], head[1] < 1 ? grid[1] : head[1] - 1];
   },
   ArrowDown: (head) => {
-    return [head[0], head[1] == grid[1] ? 0 : head[1] + 1];
+    return [head[0], head[1] === grid[1] ? 0 : head[1] + 1];
   },
   ArrowLeft: (head) => {
     return [head[0] < 1 ? grid[0] : head[0] - 1, head[1]];
   },
   ArrowRight: (head) => {
-    return [head[0] == grid[0] ? 0 : head[0] + 1, head[1]];
+    return [head[0] === grid[0] ? 0 : head[0] + 1, head[1]];
   },
 };
 
@@ -184,9 +184,9 @@ var generateFoodPos = () => {
   return newPos;
 };
 
-var Snake = ({ containerSize }) => {
-  const dispatch = useDispatch();
-  const isGameStarted = useSelector((store) => store.projects.isGameStarted);
+var Snake = () => {
+  const dispatch = useAppDispatch();
+  const isGameStarted = useAppSelector((store) => store.projects.isGameStarted);
 
   const renderFrame = (ctx) => {
     let unit = {
@@ -225,7 +225,7 @@ var Snake = ({ containerSize }) => {
       // Enable scroll
       setScroll(true);
     }
-    if (frameCount % 5 == 0 && isGameStarted && !isGameOver) {
+    if (frameCount % 5 === 0 && isGameStarted && !isGameOver) {
       // Walk
       snake.push(moviment[direction](snakeHead()));
       snake.shift();
@@ -236,7 +236,7 @@ var Snake = ({ containerSize }) => {
         food = generateFoodPos();
 
         // Score up
-        score += 100;
+        // score += 100;
 
         // Grow
         snake.unshift([snake[0][0], snake[0][1]]);
@@ -245,7 +245,7 @@ var Snake = ({ containerSize }) => {
       // Render frame
       renderFrame(ctx);
     }
-    if (isGameOver && frameCount % 5 == 0) {
+    if (isGameOver && frameCount % 5 === 0) {
       snake = [...gameOver];
       food = [-1, -1];
       // Render frame
@@ -253,33 +253,34 @@ var Snake = ({ containerSize }) => {
     }
   };
 
-  var containerSize = useSelector((state) => state.container);
+  var containerSize = useAppSelector((state) => state.container);
   var display = containerSize.display;
   var gridHeight = config[display].grid.height;
 
   const canvasRef = useCanvas(draw);
-  function resizeCanvasToDisplaySize(canvas) {
-    const { width, height } = canvas.getBoundingClientRect();
-
-    if (canvas.width !== width || canvas.height !== height) {
-      canvas.width = width;
-      canvas.height = gridHeight * containerSize.width;
-      return true; // here you can return some usefull information like delta width and delta height instead of just true
-      // this information can be used in the next redraw...
-    }
-
-    return false;
-  }
 
   useEffect(() => {
+    function resizeCanvasToDisplaySize(canvas) {
+      const { width, height } = canvas.getBoundingClientRect();
+
+      if (canvas.width !== width || canvas.height !== height) {
+        canvas.width = width;
+        canvas.height = gridHeight * containerSize.width;
+        return true; // here you can return some usefull information like delta width and delta height instead of just true
+        // this information can be used in the next redraw...
+      }
+
+      return false;
+    }
+
     if (containerSize.width) {
       resizeCanvasToDisplaySize(canvasRef.current);
       renderFrame(canvasRef.current.getContext("2d"));
     }
-  }, [containerSize]);
+  }, [canvasRef, containerSize, gridHeight]);
 
   const setScroll = (isActive) => {
-    var scrollbar = document.querySelector("#root > .scrollbar-container");
+    var scrollbar = document.querySelector("#__next > .scrollbar-container");
     scrollbar.style.scrollBehavior = isActive ? "initial" : "smooth";
   };
 
@@ -292,17 +293,19 @@ var Snake = ({ containerSize }) => {
           if (isMovimentKey) {
             e.preventDefault();
 
-            if (e.key == "ArrowUp" && direction == "ArrowDown") return false;
-            if (e.key == "ArrowDown" && direction == "ArrowUp") return false;
-            if (e.key == "ArrowLeft" && direction == "ArrowRight") return false;
-            if (e.key == "ArrowRight" && direction == "ArrowLeft") return false;
+            if (e.key === "ArrowUp" && direction === "ArrowDown") return false;
+            if (e.key === "ArrowDown" && direction === "ArrowUp") return false;
+            if (e.key === "ArrowLeft" && direction === "ArrowRight")
+              return false;
+            if (e.key === "ArrowRight" && direction === "ArrowLeft")
+              return false;
 
             direction = e.key;
           }
         }
 
         // Disable scroll if not escape
-        if (e.key == "Escape") {
+        if (e.key === "Escape") {
         }
       };
       var wheelHandler = (e) => {

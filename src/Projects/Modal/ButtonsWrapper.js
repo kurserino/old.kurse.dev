@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "@emotion/styled";
-import colors from "../../colors";
 
 var ButtonsWrapper = ({ className, children }) => (
   <div className={className}>{children}</div>

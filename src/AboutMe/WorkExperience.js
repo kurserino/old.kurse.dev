@@ -1,12 +1,10 @@
 import React from "react";
-import { css, jsc } from "@emotion/react";
-import { useSelector } from "react-redux";
+import { css } from "@emotion/react";
+import { useAppSelector } from "../hooks";
 import { Tooltip } from "react-tippy";
 import { tooltipParams } from "../config.js";
-import Info from "./Info";
 import Area from "./Area";
 import Title from "./Title";
-import Text from "./Text";
 import DateRange from "./DateRange";
 import PartyPopper from "./PartyPopper";
 import Position from "./Position";
@@ -56,8 +54,8 @@ const PartyPopperWrapper = ({ children, ...props }) => {
 };
 
 const WorkExperience = ({ ...props }) => {
-  const containerSize = useSelector((store) => store.container);
-  const isMobile = containerSize.display == "mobile";
+  const containerSize = useAppSelector((store) => store.container);
+  const isMobile = containerSize.display === "mobile";
 
   return (
     <Area>

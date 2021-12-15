@@ -1,26 +1,23 @@
 import React from "react";
-import { css, jsc } from "@emotion/react";
 import { Tooltip } from "react-tippy";
 import { tooltipParams } from "../config.js";
-import Info from "./Info";
 import Area from "./Area";
 import Title from "./Title";
-import Text from "./Text";
 import Skill from "./Skill";
 
 // Svg
-import { ReactComponent as ReactLogo } from "./svg/react.svg";
-import { ReactComponent as ReduxLogo } from "./svg/redux.svg";
-import { ReactComponent as NodeJsLogo } from "./svg/nodejs.svg";
-import { ReactComponent as SassLogo } from "./svg/sass.svg";
-import { ReactComponent as GulpLogo } from "./svg/gulp.svg";
-import { ReactComponent as KnockoutJsLogo } from "./svg/knockoutjs.svg";
-import { ReactComponent as MagentoLogo } from "./svg/magento.svg";
-import { ReactComponent as GitLogo } from "./svg/git.svg";
-import { ReactComponent as NginxLogo } from "./svg/nginx.svg";
-import { ReactComponent as PhpLogo } from "./svg/php.svg";
-import { ReactComponent as MongoDbLogo } from "./svg/mongodb.svg";
-import { ReactComponent as ExpressLogo } from "./svg/express.svg";
+import ReactLogo from "./svg/react.svg";
+import ReduxLogo from "./svg/redux.svg";
+import NodeJsLogo from "./svg/nodejs.svg";
+import SassLogo from "./svg/sass.svg";
+import GulpLogo from "./svg/gulp.svg";
+import KnockoutJsLogo from "./svg/knockoutjs.svg";
+import MagentoLogo from "./svg/magento.svg";
+import GitLogo from "./svg/git.svg";
+import NginxLogo from "./svg/nginx.svg";
+import PhpLogo from "./svg/php.svg";
+import MongoDbLogo from "./svg/mongodb.svg";
+import ExpressLogo from "./svg/express.svg";
 
 const WorkExperience = ({ ...props }) => {
   return (

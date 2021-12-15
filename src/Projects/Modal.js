@@ -1,18 +1,15 @@
 import React, { Suspense } from "react";
 import { css } from "@emotion/react";
 import CloseButton from "./Modal/CloseButton";
-import {
-  BrowserRouter as Router,
-  useHistory,
-  useParams,
-} from "react-router-dom";
+import dynamic from "next/dynamic";
 import colors from "../colors";
 import config from "../config";
-import { useSelector } from "react-redux";
+import { useAppSelector } from "../hooks";
+import { useRouter } from "next/router";
 
-const OsExperiment = React.lazy(() => import("./Modal/Content/OsExperiment"));
-const OctoShop = React.lazy(() => import("./Modal/Content/OctoShop"));
-const Password = React.lazy(() => import("./Modal/Content/Password"));
+const OsExperiment = dynamic(() => import("./Modal/Content/OsExperiment"));
+const OctoShop = dynamic(() => import("./Modal/Content/OctoShop"));
+const Password = dynamic(() => import("./Modal/Content/Password"));
 
 const modalContentIndex = {
   "os-experiment": OsExperiment,
@@ -21,11 +18,11 @@ const modalContentIndex = {
 };
 
 const Blocker = ({ ...props }) => {
-  const history = useHistory();
+  const router = useRouter();
   return (
     <div
       onClick={(e) => {
-        history.push("/");
+        router.push("/", undefined, { shallow: true });
       }}
       css={css`
         position: fixed;
@@ -42,10 +39,10 @@ const Blocker = ({ ...props }) => {
 };
 
 const Modal = ({ children, modalContent, refs, ...props }) => {
-  const { project } = useParams();
-  const history = useHistory();
+  const router = useRouter();
+  const { project } = router.query;
   const ModalComponent = modalContentIndex[project];
-  const containerSize = useSelector((state) => state.container);
+  const containerSize = useAppSelector((state) => state.container);
   const display = containerSize.display;
   const borderRadius = config[display].borderRadius;
 
@@ -77,7 +74,7 @@ const Modal = ({ children, modalContent, refs, ...props }) => {
         `}
         {...props}
       >
-        <CloseButton onClick={(e) => history.push("/")} />
+        <CloseButton onClick={(e) => router.push("/")} />
         <Suspense fallback={<div>Loading...</div>}>
           {ModalComponent && <ModalComponent />}
         </Suspense>

@@ -1,5 +1,4 @@
-import React from "react";
-import { css, jsx } from "@emotion/react";
+import { css } from "@emotion/react";
 import Title from "../Title";
 import Text from "../Text";
 import Divider from "../Divider";
@@ -28,7 +27,11 @@ const OsExperiment = ({ ...props }) => (
       <Button href="/os-experiment" target="_blank">
         Take a look at this project
       </Button>
-      <Button isWhite href="https://github.com/iamkrs/os-experiment" target="_blank">
+      <Button
+        isWhite
+        href="https://github.com/iamkrs/os-experiment"
+        target="_blank"
+      >
         <GithubIcon width={20} height={20} />
         View on github
       </Button>

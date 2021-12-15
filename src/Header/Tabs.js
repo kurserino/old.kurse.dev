@@ -1,14 +1,14 @@
 import React, { useRef } from "react";
-import { css, jsx } from "@emotion/react";
-import { useSelector, useDispatch } from "react-redux";
+import { css } from "@emotion/react";
+import { useAppSelector, useAppDispatch } from "../hooks";
 import colors from "../colors";
 import Tab from "./Tab";
 import OpenNewTab from "./OpenNewTab";
 import { setOpen } from "../store/slices/tabs";
 
 const Blocker = ({ ...props }) => {
-  const dispatch = useDispatch();
-  const isOpen = useSelector((store) => store.tabs.isOpen);
+  const dispatch = useAppDispatch();
+  const isOpen = useAppSelector((store) => store.tabs.isOpen);
 
   return (
     <div
@@ -31,11 +31,11 @@ const Blocker = ({ ...props }) => {
 
 export const Tabs = ({ tabRefs, mouse, tabOffset, ...props }) => {
   const tabsRef = useRef();
-  const containerSize = useSelector((state) => state.container);
-  const isOpen = useSelector((store) => store.tabs.isOpen);
-  const isMobile = containerSize.display == "mobile";
-  const tabs = useSelector((state) => state.tabs.tabs);
-  const menu = useSelector((state) => state.tabs.menu);
+  const containerSize = useAppSelector((state) => state.container);
+  const isOpen = useAppSelector((store) => store.tabs.isOpen);
+  const isMobile = containerSize.display === "mobile";
+  const tabs = useAppSelector((state) => state.tabs.tabs);
+  const menu = useAppSelector((state) => state.tabs.menu);
   const items = isMobile ? menu : tabs;
 
   return (

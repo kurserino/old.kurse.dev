@@ -1,0 +1,10 @@
+{
+  "files.exclude": {
+    "timetracker": true,
+    ".next": true,
+    "node_modules": true,
+    "yarn.lock": true,
+    "package-lock.json": true
+    // "**/*.tsx": true,
+  }
+}

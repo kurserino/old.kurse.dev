@@ -4,10 +4,15 @@ export const windowSlice = createSlice({
   name: "window",
   initialState: {
     size: {
-      width: window.innerWidth,
-      height: window.innerHeight,
-      display: window.innerWidth <= 991 ? "mobile" : "desktop",
-    }
+      width: typeof window !== "undefined" ? window.innerWidth : 0,
+      height: typeof window !== "undefined" ? window.innerHeight : 0,
+      display:
+        typeof window !== "undefined"
+          ? window.innerWidth <= 991
+            ? "mobile"
+            : "desktop"
+          : "desktop",
+    },
   },
   reducers: {
     setWindowSize: (state, action) => {
@@ -32,7 +37,7 @@ export const { setWindowSize } = windowSlice.actions;
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
-// in the slice file. For example: `useSelector((state) => state.counter.value)`
+// in the slice file. For example: `useAppSelector((state) => state.counter.value)`
 // export const selectCount = (state) => state.counter.value;
 
 export default windowSlice.reducer;

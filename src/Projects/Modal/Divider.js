@@ -5,7 +5,6 @@ import colors from "../../colors";
 var Divider = (props) => <div {...props}></div>;
 
 var StyledDivider = styled(Divider)`
-  float: left;
   width: ${(props) => props.size}px;
   min-height: 1px;
   background: ${colors.black};

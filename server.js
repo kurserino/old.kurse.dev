@@ -23,7 +23,7 @@ app.use(express.static(path.join(__dirname, "build")));
 
 // Additional routes
 const routes = ["/api"];
-routesFiles = fs.readdirSync(path.join(__dirname, "routes"));
+var routesFiles = fs.readdirSync(path.join(__dirname, "routes"));
 routesFiles.forEach((file) => {
   var route = file.replace(".js", "");
   app.use(require(path.join(__dirname, "routes", file)));
@@ -44,7 +44,7 @@ api.get("/", function (req, res) {
 
 app.use("/api", api);
 
-if (process.env.NODE_ENV == "development") {
+if (process.env.NODE_ENV === "development") {
   app.listen(process.env.PORT || 8080);
 } else {
   const httpsServer = https.createServer(

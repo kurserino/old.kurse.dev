@@ -1,5 +1,5 @@
 import React from "react";
-import { css, jsx } from "@emotion/react";
+import { css } from "@emotion/react";
 import "react-perfect-scrollbar/dist/css/styles.css";
 import PerfectScrollbar from "react-perfect-scrollbar";
 

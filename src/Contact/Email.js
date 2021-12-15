@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { css, jsx } from "@emotion/react";
+import { css } from "@emotion/react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { Tooltip } from "react-tippy";
 import { tooltipParams } from "../config.js";

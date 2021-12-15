@@ -1,8 +1,7 @@
-import React, { useRef, useLayoutEffect, useState } from "react";
+import { useRef } from "react";
 import { css } from "@emotion/react";
 import useSize from "../../hooks/useSize";
 import colors from "../../colors";
-import config from "../../config";
 
 var Box = ({ containerSize, ...props }) => {
   var boxRef = useRef();

@@ -1,14 +1,14 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useAppSelector, useAppDispatch } from "../hooks";
 import { useHistory } from "react-router-dom";
-import { css, jsx } from "@emotion/react";
+import { css } from "@emotion/react";
 import { setTabs, setClosedTabs } from "../store/slices/tabs";
 
 const OpenNewTab = ({ ...props }) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const history = useHistory();
-  const tabs = useSelector((state) => state.tabs.tabs);
-  const closedTabs = useSelector((state) => state.tabs.closedTabs);
+  const tabs = useAppSelector((state) => state.tabs.tabs);
+  const closedTabs = useAppSelector((state) => state.tabs.closedTabs);
   const tabsWidth = tabs.length * 140;
   const marginLeft = 6;
 

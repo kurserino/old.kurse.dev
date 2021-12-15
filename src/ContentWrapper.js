@@ -3,7 +3,7 @@ import { jsx, css } from "@emotion/react";
 import colors from "./colors";
 import config from "./config";
 
-var ContentWrapper = ({ containerSize, ...props }) => {
+var ContentWrapper = ({ ...props }) => {
   var containerSize = { display: "desktop" };
   return (
     <div

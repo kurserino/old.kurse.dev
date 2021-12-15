@@ -1,11 +1,11 @@
 import React, { useEffect, useRef } from "react";
-import { useDispatch } from "react-redux";
+import { useAppDispatch } from "../hooks";
 import { useHistory } from "react-router-dom";
-import { css, jsx } from "@emotion/react";
+import { css } from "@emotion/react";
 import { setTabsLeftOffset } from "../store/slices/tabs";
 
 var Logo = ({ ...props }) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const history = useHistory();
   const logoRef = useRef(null);
 

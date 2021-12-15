@@ -1,10 +1,6 @@
-import React, { useState } from "react";
-import { css, jsx } from "@emotion/react";
-import colors from "../colors";
-import config from "../config";
+import { css } from "@emotion/react";
 
 var Row = ({ containerSize, ...props }) => {
-
   return (
     <div
       css={css`
@@ -17,8 +13,7 @@ var Row = ({ containerSize, ...props }) => {
         }
       `}
       {...props}
-    >
-    </div>
+    ></div>
   );
 };
 

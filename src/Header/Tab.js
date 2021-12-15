@@ -1,14 +1,14 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
-import { css, jsx } from "@emotion/react";
+import React from "react";
+import { useRouter } from "next/router";
+import { useAppSelector, useAppDispatch } from "../hooks";
+import { css } from "@emotion/react";
 import Icon from "./Tab/Icon";
 import config from "../config";
 import colors from "../colors";
 import CloseButton from "./Tab/CloseButton";
 import Square from "../Icons/Square";
 import {
-  setInitialPos,
+  // setInitialPos,
   setDragging,
   setInitialClick,
   setInitialIndex,
@@ -17,54 +17,45 @@ import {
 } from "../store/slices/tabs";
 
 var Tab = ({ tabRefs, href, id, index, ...props }) => {
-  const dispatch = useDispatch();
-  const history = useHistory();
-  var windowSize = useSelector((store) => store.window.size);
+  const dispatch = useAppDispatch();
+  const router = useRouter();
   var tabRef = tabRefs[id];
-  var path = window.location.pathname;
-  var isProjects = path == "/" || path.startsWith("/projects");
-  var isActive = href == "/" ? isProjects : path.startsWith(href);
-  var containerSize = useSelector((state) => state.container);
+  var path = router.pathname;
+  var isProjects = path === "/" || path.startsWith("/projects");
+  var isActive = href === "/" ? isProjects : path.startsWith(href);
+  var containerSize = useAppSelector((state) => state.container);
   var margin = config[containerSize.display].margin;
   var borderRadius = config[containerSize.display].borderRadius;
 
-  const mouse = useSelector((state) => state.mouse);
-  const { docX, docY, posX, posY, elX, elY, elW, elH } = mouse;
+  const mouse = useAppSelector((state) => state.mouse);
+  const { docX } = mouse;
 
-  const container = useSelector((state) => state.container);
-  const dragging = useSelector((state) => state.tabs.dragging);
-  const initialPos = useSelector((state) => state.tabs.initialPos);
-  const initialClick = useSelector((state) => state.tabs.initialClick);
-  const initialIndex = useSelector((state) => state.tabs.initialIndex);
-  const lockedTranslateX = useSelector((state) => state.tabs.lockedTranslateX);
-  const rect = useSelector((state) => state.tabs.rect);
-  const tabs = useSelector((state) => state.tabs.tabs);
-  const leftOffset = useSelector((state) => state.tabs.leftOffset);
-  let activeIndex = tabs.findIndex((tab) => tab.id == dragging);
+  const dragging = useAppSelector((state) => state.tabs.dragging);
+  const initialClick = useAppSelector((state) => state.tabs.initialClick);
+  const initialIndex = useAppSelector((state) => state.tabs.initialIndex);
 
-  var isDragging = dragging == id;
+  const rect = useAppSelector((state) => state.tabs.rect);
+
+  var isDragging = dragging === id;
   var rectDOM = tabRef.current ? tabRef.current.getBoundingClientRect() : false;
 
   // Calculate tab position
   var translateX = 0;
 
-  if (isDragging) {
-    // Limit to move only inside tabs area
-    var rectLeft = rect.left - initialIndex * 1 - 1;
-    var rectRight = windowSize.width - rect.right;
-    var rectHalf = rect.width / 2;
-    var windowWidth = windowSize.width;
-
+  if (isDragging && docX) {
     // Dragging position
     translateX = docX - initialClick;
   }
 
-  var containerSize = useSelector((store) => store.container);
-  var isMobile = containerSize.display == "mobile";
+  var isMobile = containerSize.display === "mobile";
+
+  if (!isDragging) {
+    console.log("pickles");
+  }
 
   return (
     <>
-      <a
+      <div
         ref={tabRef}
         onMouseDown={(e) => {
           e.preventDefault();
@@ -78,10 +69,10 @@ var Tab = ({ tabRefs, href, id, index, ...props }) => {
           }
 
           dispatch(setDragging(id));
-          dispatch(setInitialPos(tabRef.current.getBoundingClientRect().x));
+          // dispatch(setInitialPos(tabRef.current.getBoundingClientRect().x));
           dispatch(setInitialClick(docX));
           dispatch(setInitialIndex(index));
-          history.push(href);
+          router.push(href, undefined, { shallow: true });
 
           if (isMobile) dispatch(setOpen(false));
         }}
@@ -121,6 +112,7 @@ var Tab = ({ tabRefs, href, id, index, ...props }) => {
             top: -38px;
 
             ${isDragging &&
+            docX &&
             css`
               left: calc(${initialIndex * 140}px - ${index * 1}px);
             `}
@@ -153,7 +145,7 @@ var Tab = ({ tabRefs, href, id, index, ...props }) => {
           {props.children}
         </span>
         {href && !isMobile && <CloseButton id={id} href={href} index={index} />}
-      </a>
+      </div>
       {isDragging && (
         <div
           css={css`

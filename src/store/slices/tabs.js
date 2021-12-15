@@ -31,7 +31,7 @@ const tabs = [
 export const tabsSlice = createSlice({
   name: "tabs",
   initialState: {
-    initialPos: 0,
+    // initialPos: 0,
     inicialClick: 0,
     initialIndex: 0,
     lockedTranslateX: 0,
@@ -62,9 +62,9 @@ export const tabsSlice = createSlice({
     setTabsLeftOffset: (state, action) => {
       state.leftOffset = action.payload;
     },
-    setInitialPos: (state, action) => {
-      state.initialPos = action.payload;
-    },
+    // setInitialPos: (state, action) => {
+    //   state.initialPos = action.payload;
+    // },
     setInitialClick: (state, action) => {
       state.initialClick = action.payload;
     },
@@ -84,7 +84,7 @@ export const tabsSlice = createSlice({
 });
 
 export const {
-  setInitialPos,
+  // setInitialPos,
   setTabsLeftOffset,
   setInitialClick,
   setInitialIndex,
@@ -106,7 +106,9 @@ export const {
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
-// in the slice file. For example: `useSelector((state) => state.counter.value)`
+// in the slice file. For example: `useAppSelector((state) => state.counter.value)`
 // export const selectCount = (state) => state.counter.value;
 
-export default tabsSlice.reducer;
+const tabsSliceReducer = tabsSlice.reducer;
+
+export default tabsSliceReducer;

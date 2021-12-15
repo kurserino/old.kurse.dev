@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
-import { css, jsx } from "@emotion/react";
+import { useAppSelector } from "./hooks";
+import { css } from "@emotion/react";
 import axios from "axios";
 
 var AboutMe = ({ ...props }) => {

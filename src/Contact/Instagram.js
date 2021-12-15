@@ -1,5 +1,5 @@
 import React from "react";
-import { css, jsx } from "@emotion/react";
+import { css } from "@emotion/react";
 
 const Instagram = ({ children, url, ...props }) => {
   return (
@@ -20,11 +20,12 @@ const Instagram = ({ children, url, ...props }) => {
         @media screen and (min-width: 991px) {
           max-width: 530px;
         }
-        
+
         @media screen and (max-width: 991px) {
           margin-bottom: 15px;
         }
       `}
+      rel="noreferrer"
     >
       <svg
         width="26"
