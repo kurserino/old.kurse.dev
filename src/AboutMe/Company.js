@@ -17,7 +17,6 @@ const Company = ({ children, ...props }) => {
 
         @media screen and (min-width: 991px) {
           border-radius: ${config.borderRadius}px;
-          border-bottom: none;
         }
       `}
     >

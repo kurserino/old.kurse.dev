@@ -31,7 +31,7 @@ const Contact = ({ ...props }) => {
             <Text>Or just say a hello! You can send me a email:</Text>
             {/* <Title isSmall>My email</Title> */}
             <Email>lucas.kurse@hotmail.com</Email>
-            <Instagram url="https://instagram.com/kuurse" />
+            <Instagram url="https://instagram.com/kurserino" />
           </Info>
         </div>
       </Page>

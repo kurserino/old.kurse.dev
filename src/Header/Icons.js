@@ -21,7 +21,7 @@ var Icons = ({ ...props }) => (
     <Link href="mailto:lucas.kurse@hotmail.com" target="_blank">
       <EmailIcon width={20} />
     </Link>
-    <Link href="https://www.instagram.com/kuurse/" target="_blank">
+    <Link href="https://www.instagram.com/kurserino/" target="_blank">
       <InstagramIcon width={20} />
     </Link>
     <Link href="https://github.com/iamkrs" target="_blank">
